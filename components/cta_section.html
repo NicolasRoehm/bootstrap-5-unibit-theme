@@ -1,10 +1,13 @@
-{% set section = include_dict.section %}
-{% set text_color = 'text-white' if section.has_background and section.background_color == 'primary' else '' %}
+{% set section    = include_dict.section %}
+{% set text_color = 'text-white' if section.has_background and section.background_color == 'primary' %}
 
 <section class="pb-5">
   <div class="container">
 
-    <div {{ classNames('py-5 rounded', text_color, {'bg-primary': section.has_background and section.background_color == 'primary', 'bg-light': section.has_background and section.background_color == 'light'}) }}>
+    <div {{ classNames('py-5 rounded', {
+      'bg-primary text-white' : section.has_background and section.background_color == 'primary',
+      'bg-light'              : section.has_background and section.background_color == 'light'
+    }) }}>
       <div class="text-center py-3">
         {% if section.title %}
           <h2 class="mb-3 fw-bold {{ text_color }}">{{ section.title }}</h2>
