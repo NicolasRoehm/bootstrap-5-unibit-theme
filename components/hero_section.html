@@ -5,7 +5,7 @@
 {% set background_opacity     = background_opacity_pct * 0.01 %}
 {% set background_size        = background.background_image_size | default('cover', true) %}
 {% set background_repeat      = background.background_image_repeat | default('no-repeat', true) %}
-{% set text_color             = 'text-white' if section.has_background and background_color == 'primary' %}
+{% set text_color             = 'text-white' if section.has_background and background.background_color == 'primary' %}
 {% set container_style        = "z-index:1;" if section.has_background and background.background_image %}
 
 <section
