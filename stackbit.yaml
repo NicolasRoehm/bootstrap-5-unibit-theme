@@ -528,6 +528,7 @@ models:
         name: style
         label: Style
         options:
+          - none
           - link
           - light
           - primary

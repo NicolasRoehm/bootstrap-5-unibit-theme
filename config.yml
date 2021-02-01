@@ -11,16 +11,16 @@ params:
     nav_links:
       - label: Features
         url: /features
-        style: 
+        style: none
       - label: Blog
         url: /blog
-        style: 
+        style: none
       - label: About
         url: /about
-        style: 
+        style: none
       - label: Style Guide
         url: /style-guide
-        style:
+        style: none
       - label: Contact Us
         url: /contact
         style: info

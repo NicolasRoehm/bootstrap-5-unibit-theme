@@ -6,8 +6,8 @@
   {% if action.new_window or action.no_follow %} rel="{% if action.new_window %}noopener {% endif %}{% if action.no_follow %}nofollow{% endif %}"{% endif %}
   {{
     classNames({
-      'active'            : active == true and action.style == null,
-      'nav-link'          : isNav == true  and action.style == null,
+      'active'            : active == true and action.style == 'none',
+      'nav-link'          : isNav == true  and action.style == 'none',
       'text-reset'        : action.style == 'link',
       'btn btn-light'     : action.style == 'light',
       'btn btn-primary'   : action.style == 'primary',
