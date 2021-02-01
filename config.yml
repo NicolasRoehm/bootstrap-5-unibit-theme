@@ -1,29 +1,29 @@
 baseurl: "/"
-title: "Stackbit Boostrap 5 Starter Theme"
+title: "Stackbit Bootstrap 5 Theme"
 init_is: "assets/js/init.js"
 page_load_js: "assets/js/page-load.js"
 page_unload_js: "assets/js/page-unload.js"
 params:
-  description: An ultra customizable generic theme for Stackbit
+  description: An ultra customizable Bootstrap 5 theme for Stackbit
   header:
     title: Starter
     has_nav: true
     nav_links:
       - label: Features
         url: /features
-        style: link
+        style: 
       - label: Blog
         url: /blog
-        style: link
+        style: 
       - label: About
         url: /about
-        style: link
+        style: 
       - label: Style Guide
         url: /style-guide
-        style: link
+        style:
       - label: Contact Us
         url: /contact
-        style: primary
+        style: info
   footer:
     has_nav: true
     nav_links:

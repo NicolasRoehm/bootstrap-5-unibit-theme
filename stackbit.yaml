@@ -1,6 +1,6 @@
 stackbitVersion: ~0.3.0
 ssgName: unibit
-buildCommand: unibit build
+buildCommand: unibit build && npm run js-prod
 publishDir: output
 staticDir: static
 uploadDir: images
@@ -11,8 +11,8 @@ logicFields:
   - blog_feed_section.recent_count
   - hero_section.background.background_image_opacity
 metadata:
-  title: Starter
-  description: "Ultra customizable starter. A developers' favorite."
+  title: Real Estate
+  description: "A Bootstrap 5 theme for Unibit"
   author: Stackbit
   authorURL: 'https://www.stackbit.com'
   images:
@@ -185,7 +185,8 @@ models:
     type: page
     label: Page
     layout: page
-    exclude: blog/**/*
+    exclude:
+      - blog/**/*
     fields:
       - type: string
         name: title
@@ -345,8 +346,8 @@ models:
         label: Background Color
         options:
           - white
-          - gray
-          - blue
+          - light
+          - primary
         default: white
         description: The background color of the section
   features_section:
@@ -421,8 +422,8 @@ models:
             label: Background Color
             options:
               - white
-              - gray
-              - blue
+              - light
+              - primary
             default: white
             description: The background color of the section
           - type: image
@@ -527,10 +528,17 @@ models:
         name: style
         label: Style
         options:
+          - 
           - link
+          - light
           - primary
           - secondary
-        default: link
+          - info
+          - outline-primary
+          - outline-secondary
+          - outline-info
+          - outline-light
+        default: primary
         required: true
       - type: boolean
         name: new_window
