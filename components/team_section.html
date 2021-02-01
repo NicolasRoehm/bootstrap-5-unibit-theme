@@ -1,0 +1,40 @@
+{% set section = include_dict.section %}
+<section class="mb-5">
+
+  {% if section.title %}
+    <div class="mt-5 mb-4">
+      <h2 class="text-center">{{ section.title }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="container">
+    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+
+      {% for person in section.team %}
+      {% set person_data = getData(person) %}
+      <div class="col mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <header>
+              <h3 class="h4 card-title">{{ person_data.first_name }} {{ person_data.last_name }}</h3>
+            </header>
+            {% if person_data.bio %}
+            <p class="card-text">
+              {{ person_data.bio | markdownify }}
+            </p>
+            {% endif %}
+          </div>
+          {% if person_data.photo %}
+          <figure class="m-0">
+            <img class="card-img-bottom" src="{{ person_data.photo | relative_url }}"
+              alt="{{ person_data.photo_alt }}" />
+          </figure>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+</section>

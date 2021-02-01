@@ -1,0 +1,15 @@
+// NOTE Bootstrap variables
+$body-color: #536171;
+$primary: #005bc4;// #2f5ffd;
+$info: #28aaff;
+$success: #28a745;
+$text-muted: #8594a5;
+$headings-color: #282f36;
+
+$min-contrast-ratio: 2.5; // default : 4.5
+
+$navbar-light-brand-color: $headings-color;
+$navbar-light-brand-hover-color: $headings-color;
+$navbar-light-color: $body-color;
+$navbar-light-hover-color: $info;
+$navbar-light-active-color: $info;

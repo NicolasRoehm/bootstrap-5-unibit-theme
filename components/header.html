@@ -1,0 +1,34 @@
+<header class="border-bottom border-1">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+
+      {% if site.params.header.logo %}
+        <a class="navbar-brand" href="{{ '/' | relative_url }}">
+          <img src="{{ site.params.header.logo | relative_url }}" alt="{{ site.params.header.logo_alt }}" />
+        </a>
+      {% else %}
+        <a class="navbar-brand fw-bold" href='{{ "/" | relative_url }}'>{{ site.params.header.title }}</a>
+      {% endif %}
+
+      {% if site.params.header.has_nav %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            {% for action in site.params.header.nav_links %}
+              {% set pageUrl = page.url | trim('/') %}
+              {% set actionUrl = action.url | trim('/') %}
+              <li class="nav-item">
+                {% set include_dict = {'action': action, 'active' : pageUrl == actionUrl, 'isNav' : true } %}
+                {% include "action.html" %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+    </div>
+  </nav>
+</header>

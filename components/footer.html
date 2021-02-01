@@ -1,0 +1,47 @@
+<footer class="border-top border-1 pt-2 pb-4">
+  <div class="container">
+
+    {% if site.params.footer.has_nav or site.params.footer.has_social %}
+      <div class="row justify-content-between">
+
+        {% if site.params.footer.has_nav %}
+          <div class="col">
+            <ul class="list-unstyled list-inline">
+              {% for action in site.params.footer.nav_links %}
+                <li class="list-inline-item text-reset">
+                  {% set include_dict = {'action': action} %}
+                  {% include "action.html" %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if site.params.footer.has_social %}
+          <div class="col text-end">
+            <ul class="list-unstyled list-inline">
+              {% for action in site.params.footer.social_links %}
+                <li class="list-inline-item">
+                  {% set include_dict = {'action': action} %}
+                  {% include "action.html" %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+      </div>
+    {% endif %}
+
+    <div class="small">
+      {% if site.params.footer.content %}
+        <span>{{ site.params.footer.content | safe }}</span>
+      {% endif %}
+      {% for action in site.params.footer.links %}
+        {% set include_dict = {'action': action} %}
+        {% include "action.html" %}
+      {% endfor %}
+    </div>
+
+  </div>
+</footer>

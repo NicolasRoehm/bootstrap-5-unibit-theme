@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+/public
+/node_modules
+/static/assets/js/mix-manifest.json
+/static/assets/js/*.txt

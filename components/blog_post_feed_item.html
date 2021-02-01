@@ -1,0 +1,41 @@
+{% set blog_feed_section = include_dict.blog_feed_section %}
+{% set post = include_dict.post_page %}
+<article class="col mb-4">
+  <div class="card h-100">
+    {% if post.params.image %}
+      <a href="{{ post.url | relative_url }}">
+        <img class="card-img-top" src="{{ post.params.image | relative_url }}" alt="{{ post.params.image_alt }}" />
+      </a>
+    {% endif %}
+    <div class="card-body">
+      <header>
+        {% if post.params.categories %}
+          {% set include_dict = {'categories': post.params.categories, 'container_class': 'card__meta'} %}
+          {% include "blog_post_categories.html" %}
+        {% endif %}
+        {% if blog_feed_section.title %}
+          <h3 class="h4 card-title"><a class="text-reset fw-bold text-decoration-none" href="{{ post.url | relative_url }}">{{ post.params.title }}</a></h3>
+        {% else %}
+          <h2 class="h4 card-title"><a class="text-reset fw-bold text-decoration-none"
+            href="{{ post.url | relative_url }}">{{ post.params.title }}</a>
+          </h2>
+        {% endif %}
+      </header>
+      {% if post.params.excerpt %}
+        <p class="card-text">{{ post.params.excerpt }}</p>
+      {% endif %}
+      <footer class="small text-muted">
+        <span>On <time
+            datetime="{{post.date | date_format("%Y-%m-%d %H:%M") }}">{{ post.date | date_format("%B %d, %Y") }}</time></span>
+        {% if post.params.author %}
+          {% set author = getData(post.params.author) %}
+          {% if author.link %}
+            <span> by <a class="link-info" href="{{ author.link | relative_url }}">{{ author.first_name }} {{ author.last_name }}</a></span>
+          {% else %}
+            <span> by {{ author.first_name }} {{ author.last_name }}</span>
+          {% endif %}
+        {% endif %}
+      </footer>
+    </div>
+  </div>
+</article>

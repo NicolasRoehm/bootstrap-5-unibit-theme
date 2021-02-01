@@ -1,0 +1,50 @@
+{% set section = include_dict.section %}
+{% set background = section.background %}
+{% set background_color = background.background_color | default('white', true) %}
+{% set background_opacity_pct = background.background_image_opacity | default(100, true) %}
+{% set background_opacity = background_opacity_pct * 0.01 %}
+{% set background_size = background.background_image_size | default('cover', true) %}
+{% set background_repeat = background.background_image_repeat | default('no-repeat', true) %}
+{% set text_color = 'text-white' if section.has_background and background_color == 'primary' %}
+{% set container_style = "z-index:1;" if section.has_background and background.background_image %}
+
+<section
+  {{ classNames('py-5 position-relative', text_color, {'bg-white': background_color == 'white', 'bg-primary': section.has_background and background_color == 'primary', 'bg-light': section.has_background and background_color == 'light', 'mb-5': section.has_background or section.image}) }}>
+
+  {% if section.has_background and background.background_image %}
+    <div class="bg-image"
+      style="background-image: url('{{ background.background_image | relative_url }}'); opacity: {{ background_opacity }}; background-size: {{ background_size }}; background-repeat: {{ background_repeat }}">
+    </div>
+  {% endif %}
+
+  <div class="container position-relative" style="{{ container_style }}">
+    <div class="row">
+    <div {{ classNames('row align-items-center', { 'flex-row-reverse': section.image_position == 'right' }) }}>
+
+      {% if section.image %}
+        <div class="col">
+          <img class="img-fluid" src="{{ section.image | relative_url }}" alt="{{ section.image_alt }}" />
+        </div>
+      {% endif %}
+
+      <div {{ classNames('col', { 'text-center': section.align == 'center', 'text-end': section.align == 'right' }) }}>
+
+        {% if section.title %}
+          <h1 class="mb-2 fw-bold {{ text_color }}">{{ section.title }}</h1>
+        {% endif %}
+        {% if section.subtitle %}
+          <div>
+            <p>{{ section.subtitle }}</p>
+          </div>
+        {% endif %}
+        {% if section.actions %}
+          <div>
+            {% set include_dict = {'actions': section.actions} %}
+            {% include "section_actions.html" %}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</section>

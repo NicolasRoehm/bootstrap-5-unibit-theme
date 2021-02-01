@@ -1,0 +1,9 @@
+.post-footer {
+  span {
+    display: inline-block;
+    margin-right: 0.5rem;
+    &:before {
+      content: "\0023";
+    }
+  }
+}

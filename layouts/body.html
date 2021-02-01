@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div id="site-wrap">
+
+  {% include "header.html" %}
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include "footer.html" %}
+
+</div>
+{% endblock %}

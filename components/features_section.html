@@ -1,0 +1,46 @@
+{% set section = include_dict.section %}
+<section class="pb-5">
+
+  {% if section.title %}
+  <div class="text-center">
+    <h2 class="mb-3">{{ section.title }}</h2>
+  </div>
+  {% endif %}
+
+  <div class="container">
+    {% for feature in section.features %}
+      <div {{ classNames('row align-items-center mb-5', { 'flex-row-reverse': feature.image_position == 'right' }) }}>
+
+        {% if feature.image %}
+          <div class="col">
+            <img class="img-fluid" src="{{ feature.image | relative_url }}" alt="{{ feature.image_alt }}" />
+          </div>
+        {% endif %}
+
+        <div {{ classNames('col', { 'text-center': feature.align == 'center', 'text-end': feature.align == 'right' }) }}>
+
+          {% if feature.title %}
+            {% if section.title %}
+              <h3 class="fw-bold mb-3">{{ feature.title }}</h3>
+            {% else %}
+              <h2 class="fw-bold mb-3">{{ feature.title }}</h2>
+            {% endif %}
+          {% endif %}
+          {% if feature.content %}
+            <div class="mb-3">
+              {{ feature.content | markdownify }}
+            </div>
+          {% endif %}
+          {% if feature.actions %}
+            <div class="btn-group">
+              {% set include_dict = {'actions': feature.actions} %}
+              {% include "section_actions.html" %}
+            </div>
+          {% endif %}
+
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+</section>

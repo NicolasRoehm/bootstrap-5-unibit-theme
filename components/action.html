@@ -1,0 +1,23 @@
+{% set action = include_dict.action %}
+{% set active = include_dict.active %}
+{% set isNav  = include_dict.isNav | default(false) %}
+<a href="{{ action.url | relative_url }}"
+  {% if action.new_window %} target="_blank"{% endif %}
+  {% if action.new_window or action.no_follow %} rel="{% if action.new_window %}noopener {% endif %}{% if action.no_follow %}nofollow{% endif %}"{% endif %}
+  {{
+    classNames({
+      'active'            : active == true and action.style == null,
+      'nav-link'          : isNav == true  and action.style == null,
+      'text-reset'        : action.style == 'link',
+      'btn btn-light'     : action.style == 'light',
+      'btn btn-primary'   : action.style == 'primary',
+      'btn btn-secondary' : action.style == 'secondary',
+      'btn btn-info'      : action.style == 'info',
+      'btn btn-outline-primary'   : action.style == 'outline-primary',
+      'btn btn-outline-secondary' : action.style == 'outline-secondary',
+      'btn btn-outline-info'      : action.style == 'outline-info',
+      'btn btn-outline-light'     : action.style == 'outline-light'
+    })
+  }}>
+  {{ action.label }}
+</a>

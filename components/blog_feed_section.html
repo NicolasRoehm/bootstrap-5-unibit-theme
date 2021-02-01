@@ -1,0 +1,44 @@
+{% set section = include_dict.section %}
+<section class="pb-5">
+
+  {% if section.title %}
+    <div class="my-4">
+      <h2 class="text-center fw-bold">{{ section.title }}</h2>
+    </div>
+  {% endif %}
+
+  <div class="container">
+    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
+      {% set section_author = false %}
+      {% if section.author %}
+        {% set section_author = getData(section.author) %}
+      {% endif %}
+
+      {% set section_category = false %}
+      {% if section.category %}
+        {% set section_category = getData(section.category) %}
+      {% endif %}
+
+      {% set posts_all = getPages("/blog") %}
+
+      {% set posts_sorted = posts_all | sort(true, true, "date") %}
+
+      {% set show_recent  = section.show_recent %}
+      {% set recent_count = section.recent_count %}
+      {% set post_count   = 0 %}
+
+      {% for post in posts_sorted %}
+        {% set is_post = false %}
+        {% if post.layout == 'post' %}
+          {% set is_post = true %}
+        {% endif %}
+        {% if is_post and (show_recent == false or post_count < recent_count) %}
+          {% set post_count = post_count + 1 %}
+          {% set include_dict = {'blog_feed_section': section, 'post_page': post, 'section_author': section_author, 'section_category': section_category} %}
+          {% include "blog_feed_item_filter.html" %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+</section>
