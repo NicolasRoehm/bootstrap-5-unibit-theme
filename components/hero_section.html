@@ -1,12 +1,13 @@
 {% set section                = include_dict.section %}
 {% set background             = section.background %}
+{% set background_image       = background.background_image | default(null, true) %}
 {% set background_color       = background.background_color | default('white', true) %}
 {% set background_opacity_pct = background.background_image_opacity | default(100, true) %}
 {% set background_opacity     = background_opacity_pct * 0.01 %}
 {% set background_size        = background.background_image_size | default('cover', true) %}
 {% set background_repeat      = background.background_image_repeat | default('no-repeat', true) %}
-{% set text_color             = 'text-white' if section.has_background == true and background.background_color == 'primary' %}
-{% set container_style        = 'z-index:1;' if section.has_background == true and (background.background_image | length) > 0 %}
+{% set text_color             = 'text-white' if (section.has_background == true and background_color == 'primary') %}
+{% set container_style        = 'z-index:1;' if (section.has_background == true and background_image != null) %}
 
 <section
   {{ classNames('py-5 position-relative', {
