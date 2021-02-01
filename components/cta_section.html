@@ -1,5 +1,5 @@
 {% set section = include_dict.section %}
-{% set text_color = 'text-white' if section.has_background and section.background_color == 'primary' %}
+{% set text_color = 'text-white' if section.has_background and section.background_color == 'primary' else '' %}
 
 <section class="pb-5">
   <div class="container">
