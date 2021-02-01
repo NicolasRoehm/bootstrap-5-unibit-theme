@@ -49,9 +49,9 @@ params:
         new_window: true
     content: >-
       &copy; Stackbit. All rights reserved. This Jamstack site was created with <a href="https://www.stackbit.com/?utm_source=deployed-footer" target="_blank" rel="noopener">Stackbit</a>. Create yours <a href="https://app.stackbit.com/create?theme=starter&utm_source=deployed-footer" target="_blank" rel="noopener">now</a>
-sass:
-  input_file: sass/main.scss
-  output_file: assets/css/main.css
-  indentWidth: 4
-  outputStyle: compressed
-  precision: 10
+# sass:
+#   input_file: sass/main.scss
+#   output_file: assets/css/main.css
+#   indentWidth: 4
+#   outputStyle: compressed
+#   precision: 10
